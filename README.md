@@ -1,0 +1,2 @@
+# tinyShakespeareGPT
+Shakespearean Text GPT
