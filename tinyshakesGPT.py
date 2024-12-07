@@ -257,14 +257,14 @@ if TRAINING:
 
     # ---------------------------------------------------------------------------------------------------------
     # Adjust the Optimizer and Learning Rate Scheduler
-    learning_rate = 5e-5  # Smaller learning rate for fine-tuning
+    learning_rate = 3e-4  # Smaller learning rate for fine-tuning
     optimizer = model.configure_optimizers(weight_decay=0.05, learning_rate=learning_rate, device=device)
 
     # Learning rate scheduler
     max_lr = learning_rate
     min_lr = max_lr * 0.1
-    warmup_steps = 20
-    max_steps = 150  # Adjust based on your training needs
+    warmup_steps = 5
+    max_steps = 50  # Adjust based on your training needs
 
     def get_lr(it):
         if it < warmup_steps:
@@ -348,7 +348,7 @@ else:
     model.to(device)
     model.eval()
 
-    def generate_text(model, tokenizer, prompt, max_length=50, temperature=0.7, top_k=50):
+    def generate_text(model, tokenizer, prompt, max_length=50, temperature=0.8, top_k=50):
         model.eval()
         tokens = tokenizer.encode(prompt)
         tokens = torch.tensor(tokens, dtype=torch.long, device=device).unsqueeze(0)
@@ -369,6 +369,8 @@ else:
         return out
 
     # Example usage
-    prompt = "Let me speak"
+    
+    prompt = "My name is"
+    print("\nPrompt: ",prompt,"\n")
     generated_text = generate_text(model, enc, prompt, max_length=100)
     print(generated_text)
