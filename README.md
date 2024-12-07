@@ -1,2 +1,2 @@
 # tinyShakespeareGPT-2(124M)
-Shakespearean Text GPT
+Fine-Tuned GPT-2(124M) for Shakespearean Text Generation
